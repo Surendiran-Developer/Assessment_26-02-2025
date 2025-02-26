@@ -32,8 +32,7 @@ export const registerUser = async ({ name, email, mobile, password, country, cit
 
 export const fetchTasks = async (authToken) => {
     try {
-        // Simulate network delay (for debugging purposes)
-        await new Promise((resolve) => setTimeout(resolve, 1));  // 2-second delay
+        await new Promise((resolve) => setTimeout(resolve, 1));
         const response = await fetch('http://localhost:5000/api/tasks', {
             method: 'GET',
             headers: {

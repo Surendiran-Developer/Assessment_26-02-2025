@@ -16,7 +16,7 @@ function App() {
           fetchTasks(authToken)
               .then((fetchedTasks) => {
                   console.log('Tasks fetched:', fetchedTasks);
-                  setTasks(fetchedTasks); // Set the tasks to state
+                  setTasks(fetchedTasks);
               })
               .catch((error) => {
                   console.error('Error setting tasks:', error);
@@ -33,7 +33,7 @@ function App() {
         setAuthToken(null);
     };
     const toggleForm = () => {
-      setShowRegisterForm(!showRegisterForm);  // Toggle the form
+      setShowRegisterForm(!showRegisterForm);
   };
 
     return (
@@ -41,13 +41,11 @@ function App() {
           {!authToken ? (
               <div className="form-container">
                   {showRegisterForm ? (
-                      // Show RegisterForm if showRegisterForm is true
                       <RegisterForm onRegister={handleLogin} />
                   ) : (
-                      // Show LoginForm if showRegisterForm is false
                       <LoginForm onLogin={handleLogin} />
                   )}
-                  {/* Toggle Button */}
+                  {/* ----Toggle Button--- */}
                   <button className="toggle-btn" onClick={toggleForm}>
                       {showRegisterForm ? 'Already have an account? Login' : 'Don’t have an account? Register'}
                   </button>

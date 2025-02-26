@@ -33,12 +33,11 @@ const TaskForm = ({ authToken, setTasks, task = null }) => {
 
             const newTask = await response.json();
 
-            // Ensure prevTasks is an array before trying to spread it
             setTasks((prevTasks) => {
                 if (Array.isArray(prevTasks)) {
-                    return [...prevTasks, newTask]; // Add the new task to the list
+                    return [...prevTasks, newTask];
                 } else {
-                    return [newTask]; // If prevTasks is not an array, just return an array with the new task
+                    return [newTask];
                 }
             });
             setName('');

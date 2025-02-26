@@ -3,15 +3,13 @@ import '../TaskList.css';
 
 const TaskList = ({ tasks = [] , setTasks, authToken }) => {
     const [loading, setLoading] = useState(false);
-    const [currentPage, setCurrentPage] = useState(1); // Track the current page
-    const [tasksPerPage] = useState(5); // Number of tasks per page
-    const [searchTerm, setSearchTerm] = useState(""); // State for search term
+    const [currentPage, setCurrentPage] = useState(1);
+    const [tasksPerPage] = useState(5);
+    const [searchTerm, setSearchTerm] = useState("");
 
-    // Pagination: Calculate the index of the first and last task on the current page
     const indexOfLastTask = currentPage * tasksPerPage;
     const indexOfFirstTask = indexOfLastTask - tasksPerPage;
     
-    // Filter tasks based on searchTerm
     const filteredTasks = tasks.filter(
         (task) =>
             task.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -20,7 +18,6 @@ const TaskList = ({ tasks = [] , setTasks, authToken }) => {
 
     const currentTasks = filteredTasks.slice(indexOfFirstTask, indexOfLastTask);
 
-    // Function to handle status update
     const updateStatus = async (taskId, newStatus) => {
         setLoading(true);
 
@@ -46,7 +43,6 @@ const TaskList = ({ tasks = [] , setTasks, authToken }) => {
         }
     };
 
-    // Function to handle task deletion
     const deleteTask = (taskId) => {
         fetch(`http://localhost:5000/api/tasks/${taskId}`, {
             method: 'DELETE',
@@ -66,19 +62,17 @@ const TaskList = ({ tasks = [] , setTasks, authToken }) => {
             });
     };
 
-    // Function to handle page change
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
     };
 
-    // Calculate the total number of pages
     const totalPages = Math.ceil(filteredTasks.length / tasksPerPage);
 
     return (
         <div className="task-list-container">
             <h2>Task List</h2>
 
-            {/* Search Bar */}
+            {/* ---Search Bar--- */}
             <div className="search-bar">
                 <input
                     type="text"
@@ -138,7 +132,7 @@ const TaskList = ({ tasks = [] , setTasks, authToken }) => {
                         </tbody>
                     </table>
 
-                    {/* Pagination Controls */}
+                    {/* ----Pagination Controls---- */}
                     <div className="pagination-controls">
                         <button
                             onClick={() => handlePageChange(currentPage - 1)}
@@ -162,6 +156,6 @@ const TaskList = ({ tasks = [] , setTasks, authToken }) => {
     );
 }
 TaskList.defaultProps = {
-    tasks: [], // Default to an empty array if no tasks are provided
+    tasks: [],
 };
 export default TaskList

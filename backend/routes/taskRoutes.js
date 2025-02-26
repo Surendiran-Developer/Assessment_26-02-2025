@@ -3,7 +3,6 @@ const authMiddleware = require('../middlewares/authMiddleware');
 const Task = require('../models/Task');
 const router = express.Router();
 
-// Create a task
 router.post('/', authMiddleware, async (req, res) => {
     const { name, description, startDate, endDate, totalTask } = req.body;
     try {
@@ -15,7 +14,6 @@ router.post('/', authMiddleware, async (req, res) => {
     }
 });
 
-// Get all tasks
 router.get('/', authMiddleware, async (req, res) => {
     try {
         const tasks = await Task.find({ userId: req.user.id }).sort({ startDate: -1 });
@@ -25,7 +23,6 @@ router.get('/', authMiddleware, async (req, res) => {
     }
 });
 
-// Update a task
 router.put('/:id', authMiddleware, async (req, res) => {
     
     const { status } = req.body;
@@ -44,30 +41,24 @@ router.put('/:id', authMiddleware, async (req, res) => {
     }
 });
 
-// Delete a task
 router.delete('/:id', authMiddleware, async (req, res) => {
     try {
-        // Find the task by its ID
         const task = await Task.findById(req.params.id);
         
-        // If the task doesn't exist
         if (!task) {
             return res.status(404).json({ message: 'Task not found' });
         }
 
-        // If the logged-in user is not the owner of the task
         if (task.userId.toString() !== req.user.id) {
             return res.status(403).json({ message: 'Unauthorized to delete this task' });
         }
 
-        // Delete the task from the database
-        await Task.deleteOne({ _id: req.params.id }); // Correct way to delete
+        await Task.deleteOne({ _id: req.params.id });
 
-        // Send success response
         res.json({ message: 'Task deleted successfully' });
 
     } catch (err) {
-        console.error('Error deleting task:', err);  // Log error for debugging
+        console.error('Error deleting task:', err);
         res.status(500).json({ message: 'Server error' });
     }
 });
