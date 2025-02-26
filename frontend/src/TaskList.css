@@ -1,0 +1,111 @@
+/* TaskList.css */
+
+.task-list-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 1000px;
+    margin: 20px auto;
+  }
+  
+  h2 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .table th,
+  .table td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .table th {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .table td button,
+  .table td select {
+    padding: 8px 15px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .table td button:hover,
+  .table td select:hover {
+    background-color: #45a049;
+  }
+  
+  .table td button:disabled,
+  .table td select:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .no-tasks {
+    text-align: center;
+    font-size: 18px;
+    color: #888;
+  }
+  
+  @media (max-width: 768px) {
+    .table {
+      font-size: 14px;
+    }
+  
+    .table th, .table td {
+      padding: 10px;
+    }
+  }
+  
+  .pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination-controls button {
+    padding: 5px 15px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.pagination-controls button:disabled {
+    cursor: not-allowed;
+    background-color: #ccc;
+}
+
+.pagination-controls span {
+    font-size: 16px;
+    margin: 0 10px;
+}
+
+.search-bar {
+    margin-bottom: 20px;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+}
